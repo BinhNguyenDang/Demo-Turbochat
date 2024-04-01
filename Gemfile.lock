@@ -156,6 +156,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
+    noticed (2.2.2)
+      rails (>= 6.1.0)
     orm_adapter (0.5.0)
     pagy (6.5.0)
     pg (1.5.6)
@@ -269,6 +271,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mini_magick
+  noticed (~> 2.2)
   pagy (~> 6.5)
   pg (~> 1.1)
   puma (>= 5.0)

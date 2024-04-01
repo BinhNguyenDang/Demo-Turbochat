@@ -74,3 +74,5 @@ gem "devise", "~> 4.9"
 gem 'devise-bootstrap-views', '~> 1.0'
 # Pagination gem
 gem "pagy", "~> 6.5"
+
+gem "noticed", "~> 2.2"

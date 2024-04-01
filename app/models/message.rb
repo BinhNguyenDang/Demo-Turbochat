@@ -9,6 +9,7 @@ class Message < ApplicationRecord
   #self.room: This refers to the room associated with the message that triggered the callback. 
   #By calling self.room, it retrieves the associated room record.
   after_create_commit do
+    notify_recipients
     update_parent_room
     broadcast_append_to self.room 
   end
@@ -42,5 +43,14 @@ class Message < ApplicationRecord
 
   def update_parent_room
     room.update(last_message_at: Time.now)
+  end
+
+  private
+  def notify_recipients
+    users_in_room = room.joined_users
+    users_in_room.each do |user|
+      next if user.eql?(self.user)
+      notification = MessageNotificationNotifier.with(message: self, room: self.room)
+    end
   end
 end
