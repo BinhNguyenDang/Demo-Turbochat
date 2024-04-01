@@ -20,6 +20,8 @@ class Room < ApplicationRecord
     # Establishes an association: a room has many users joined through joinables/ source: :user indicate what model joined_users uses
     has_many :joined_users, through: :joinables, source: :user
 
+    has_noticed_notifications model_name: 'Notification'
+
     # Method to broadcast a message after a new room is created if it's public
     def broadcast_if_public
       # Rails.logger.info "Broadcasting latest message for room: #{id}"

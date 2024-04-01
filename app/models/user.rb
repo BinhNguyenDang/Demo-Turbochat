@@ -29,6 +29,8 @@ class User < ApplicationRecord
   # Define enumeration for user roles: user, admin
   has_many :joined_rooms, through: :joinables, source: :room
 
+  has_many :notifications, as: :recipient, class_name: "Noticed::Notification"
+
    # Define enumeration for user roles: user, admin
   enum role: %i[user admin]
  

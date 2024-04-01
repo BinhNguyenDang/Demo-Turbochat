@@ -51,6 +51,7 @@ class Message < ApplicationRecord
     users_in_room.each do |user|
       next if user.eql?(self.user)
       notification = MessageNotificationNotifier.with(message: self, room: self.room)
+      notification.deliver_later(user)
     end
   end
 end
