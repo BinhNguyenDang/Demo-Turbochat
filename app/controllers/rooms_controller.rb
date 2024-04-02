@@ -3,7 +3,7 @@ include RoomsHelper
   # Ensure that the user is authenticated before executing any action
   before_action :authenticate_user!
   before_action :set_status
-  
+  before_action :set_notifications_to_read
   def index
     # Initialize a new instance of the Room model
     @rooms = Room.new
@@ -21,6 +21,7 @@ include RoomsHelper
     
     # Fetch all users except the current user, all_except scope ( definition in user.rb)
     @users = User.all_except(current_user)
+    
     
     # Render the 'index' template
     render 'index'
@@ -116,4 +117,22 @@ include RoomsHelper
   def set_status
     current_user.update!(status: User.statuses[:online]) if current_user
   end
+
+  def set_notifications_to_read
+    current_room_id = params[:id] # Assuming this is how you determine the current room
+    return unless current_room_id # Skip if no current room ID is available
+    
+    notifications = current_user.notifications.unread
+    notifications.each do |notification|
+      notification.mark_as_read
+    end
+    
+    # broadcast_replace_to(
+    #     "rooms",
+    #     target: "rooms_#{current_room_id}_notification",
+    #     partial: "rooms/notifications",
+    #     locals: { user: current_user }
+    #   )
+  end
+
 end
