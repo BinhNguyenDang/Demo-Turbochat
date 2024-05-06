@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Turbochat
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    
     config.load_defaults 7.1
 
     config.action_view.sanitized_allowed_tags = Loofah::HTML5::SafeList::ALLOWED_ELEMENTS
