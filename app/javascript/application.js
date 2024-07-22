@@ -2,6 +2,6 @@
 import "@hotwired/turbo-rails";
 import "controllers";
 import "channels";
-import "./mention.js";
+import "mention";
 import "chartkick";
 import "Chart.bundle";
