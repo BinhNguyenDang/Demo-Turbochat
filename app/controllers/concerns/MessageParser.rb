@@ -23,7 +23,7 @@ module MessageParser
           role = User.roles[target_role]
   
           @message.body += " => Assigned #{target_username} as #{target_role} \n"
-          target_user.update(role:) if target_user && role
+          target_user.update(role: role) if target_user && role
         end
     end
   
