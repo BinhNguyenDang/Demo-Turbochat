@@ -1,5 +1,5 @@
 
-    let APP_ID = '';  // Get Agora App ID from the controller
+    let APP_ID = window.app_id;  // Get Agora App ID from the controller
     let token = null;
     let uid = window.userId;
     

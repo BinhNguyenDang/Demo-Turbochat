@@ -28,7 +28,7 @@
     <script>
         window.userId = "<%= @user.id %>";
         window.roomId = "<%= @room.id %>";
-        window.temp = "<%= @room.id %>"
+        window.app_id = "<%= Rails.application.credentials.APP_ID%>";
     </script>
 </body>
 <%= javascript_include_tag 'agora-rtm-sdk-1.5.1' %>
