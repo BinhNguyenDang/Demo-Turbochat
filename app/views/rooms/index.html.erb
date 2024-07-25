@@ -51,6 +51,10 @@
         </div>
         <%= render 'layouts/new_message_form' %>
       </div>
+      <div id="video_chat_controls">
+        <%= link_to "Start Video Chat", video_chat_path(@single_room.id), class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
+
 </div>
