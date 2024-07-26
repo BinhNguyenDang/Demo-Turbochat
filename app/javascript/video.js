@@ -50,6 +50,7 @@
     };
 
     let handleUserLeft = (MemberId) => {
+        console.log('A user left the channel:', MemberId);
         document.getElementById('user-2').style.display = 'none';
         document.getElementById('user-1').classList.remove('smallFrame');
     };

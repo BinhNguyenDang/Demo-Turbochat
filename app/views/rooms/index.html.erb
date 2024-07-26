@@ -34,7 +34,14 @@
   <div id="room_container" class="col-md-9 col-sm-9 bg-dark text-light">
     <% if @single_room %>
       <div id="single_room">
-        <h4 class="text-center"> <%= @user&.username || @single_room.name %> </h4>
+        <h4 class="text-center">
+          <%= @user&.username || @single_room.name %> 
+            <% if @single_room.is_private && @user != current_user %>
+              <%= link_to video_chat_path(@single_room.id) do %>
+                <i class="bi bi-camera-video"></i> 
+              <% end %>
+            <% end %> 
+        </h4>
         <%= turbo_stream_from @single_room %>
         <div id="messages" data-controller="scroll">
           <!-- Initialize a Turbo Frame tag named "page_handler". Turbo Frames handle partial page updates in Turbo-enabled Rails applications. -->
@@ -50,9 +57,6 @@
           </div>
         </div>
         <%= render 'layouts/new_message_form' %>
-      </div>
-      <div id="video_chat_controls">
-        <%= link_to "Start Video Chat", video_chat_path(@single_room.id), class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>
