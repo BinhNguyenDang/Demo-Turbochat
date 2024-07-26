@@ -20,7 +20,7 @@
             <div class="control-container" id="mic-btn">
                 <%= image_tag("mic.png") %>
             </div>
-            <a href="<%= room_path %>">
+            <a href="<%= room_path %>" onclick="reloadPage(event)">
                 <div class="control-container" id="leave-btn">
                     <%= image_tag("phone.png")  %>
                 </div>
@@ -30,6 +30,20 @@
             window.userId = "<%= @user.id %>";
             window.roomId = "<%= @room.id %>";
             window.app_id = "<%= Rails.application.credentials.APP_ID%>";
+            function reloadPage(event) {
+                event.preventDefault(); // Prevent the default link behavior
+                var targetUrl = event.currentTarget.href;
+
+                window.location.href = targetUrl;
+
+                // Check periodically if the page has changed, and then reload
+                var checkPageChange = setInterval(function() {
+                    if (window.location.href === targetUrl) {
+                        clearInterval(checkPageChange);
+                        window.location.reload();
+                    }
+                }, 100); // Check every 100 milliseconds
+            }
         </script>
     <% end %>
 </body>
