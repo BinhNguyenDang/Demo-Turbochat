@@ -105,6 +105,10 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (1.1.0)
+    dotenv (3.1.2)
+    dotenv-rails (3.1.2)
+      dotenv (= 3.1.2)
+      railties (>= 6.1)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -273,6 +277,7 @@ DEPENDENCIES
   chartkick (~> 5.0)
   devise (~> 4.9)
   devise-bootstrap-views (~> 1.0)
+  dotenv-rails
   groupdate (~> 6.4)
   hirb
   image_processing (~> 1.2)

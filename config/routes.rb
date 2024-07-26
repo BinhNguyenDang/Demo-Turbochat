@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'video_chat/index'
   get 'admin/dashboard'
   # Define resources for rooms and nested resources for messages
   resources :rooms do 
@@ -8,6 +9,8 @@ Rails.application.routes.draw do
       post :search
     end
   end
+
+  get 'rooms/:id/video_chat', to: 'video_chat#index', as: 'video_chat'
 
   # leave_room_path(room)
   get 'rooms/leave/:id', to: 'rooms#leave', as: 'leave_room'
