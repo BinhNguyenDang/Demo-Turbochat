@@ -45,10 +45,13 @@
                 }, 100); // Check every 100 milliseconds
             }
         </script>
+    <% else %>
+        <a href="<%= rooms_path %>"></a>
+        <%= flash[:notice] = "You're not a participant of this room"%>
     <% end %>
 </body>
-<%= javascript_include_tag 'agora-rtm-sdk-1.5.1' %>
-<%= javascript_include_tag 'video.js' %>
+<%= javascript_include_tag 'agora-rtm-sdk-1.5.1', defer: true %>
+<%= javascript_include_tag 'video.js', defer: true %>
 
  
 </html>
