@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   include RoomsHelper
+  before_action :set_user, only: [:show, :profile]
   def show
     # Find the user by ID
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     
     # Get all users except the current user (custom scope in user.rb)
     @users = User.all_except(current_user)
@@ -48,11 +49,17 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @dashboard = @user.messages.group_by_day(:created_at, range: 1.month.ago..Time.now).count
   end
 
-  
+  private
+
+  def set_user
+    @user = User.find(params[:id])
+     rescue ActiveRecord::RecordNotFound
+      redirect_to rooms_path, alert: "User not found."
+  end
   
   
 end

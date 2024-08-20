@@ -4,6 +4,7 @@ include RoomsHelper
   before_action :authenticate_user!
   before_action :set_status
   before_action :authorize_user, only: [:show]
+  before_action :set_room, only: [:join, :leave]
   
   
   def index
@@ -113,7 +114,6 @@ include RoomsHelper
 
   def join
     # Finds the room with the specified ID
-    @room = Room.find(params[:id])
     # Adds the current user to the joined_rooms association of the room
     current_user.joined_rooms << @room
     # Redirects to the rooms index page
@@ -122,7 +122,6 @@ include RoomsHelper
 
   def leave
     # Finds the room with the specified ID
-    @room = Room.find(params[:id])
     # Removes the current user from the joined_rooms association of the room
     current_user.joined_rooms.delete(@room)
     # Redirects to the rooms index page
@@ -149,7 +148,10 @@ include RoomsHelper
     
     # Bulk update to mark notifications as read
     unread_notifications.update_all(read_at: Time.current)
+  end
 
+  def set_room
+    @room = Room.find(params[:id])
   end
 
   def authorize_user
@@ -167,10 +169,5 @@ include RoomsHelper
 
   def room_params
     params.require(:room).permit(:name)
-  end
-
-  
+  end 
 end
-
-
-#todo: refactor and rescue
