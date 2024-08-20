@@ -3,6 +3,7 @@ include RoomsHelper
   # Ensure that the user is authenticated before executing any action
   before_action :authenticate_user!
   before_action :set_status
+  before_action :authorize_user, only: [:show]
   
   
   def index
@@ -76,11 +77,17 @@ include RoomsHelper
   end
   
   def create
-    # Create a new room with the name specified in the params
-    @room = Room.create(name: params["name"])
-    
-    # Redirects the user to the show page of the newly created room
-    redirect_to @room
+    # Access the name parameter correctly using strong parameters
+    @room = Room.create(room_params)
+  
+    if @room.persisted?
+      # Redirects the user to the show page of the newly created room
+      redirect_to @room, notice: 'Room was successfully created.'
+    else
+      # If the room was not created successfully, render the form again with errors
+      flash.now[:alert] = 'There was an error creating the room.'
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def search
@@ -139,6 +146,21 @@ include RoomsHelper
     # Bulk update to mark notifications as read
     unread_notifications.update_all(read_at: Time.current)
 
+  end
+
+  def authorize_user
+    
+    @room = Room.find(params[:id])
+    if @room.is_private
+      unless @room.participant?(@room, current_user)
+        redirect_to rooms_path, alert: "You are not a member of this room."
+      end
+    end
+  end
+
+
+  def room_params
+    params.require(:room).permit(:name)
   end
 
   

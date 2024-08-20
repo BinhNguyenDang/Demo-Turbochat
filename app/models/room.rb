@@ -1,6 +1,7 @@
 class Room < ApplicationRecord
     # Validates the uniqueness of the room name
     validates_uniqueness_of :name
+    validates :name, presence: true
     
     # Defines a scope to fetch public rooms
     scope :public_rooms, -> { where(is_private: false) }

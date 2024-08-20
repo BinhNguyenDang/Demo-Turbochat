@@ -1,5 +1,5 @@
 <% if current_user.admin? %>
-  <%= form_with(model: @room, remote: true, class:'d-flex',
+  <%= form_with(model: Room.new, remote: true, class:'d-flex',
   data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset"}) do |f| %>
     <%= f.text_field :name, class: 'form-control new-room-input', autocomplete: 'off',
       placeholder:"Admins Only - Create Room" %>
