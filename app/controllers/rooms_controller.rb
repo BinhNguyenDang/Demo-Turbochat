@@ -74,6 +74,10 @@ include RoomsHelper
     
     # Render the 'index' template
     render 'index'
+
+    rescue ActiveRecord::RecordNotFound
+      redirect_to rooms_path, alert: "Room not found."
+  
   end
   
   def create
@@ -156,6 +160,8 @@ include RoomsHelper
         redirect_to rooms_path, alert: "You are not a member of this room."
       end
     end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to rooms_path, alert: "Room not found."
   end
 
 
@@ -165,3 +171,6 @@ include RoomsHelper
 
   
 end
+
+
+#todo: refactor and rescue
