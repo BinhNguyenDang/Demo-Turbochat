@@ -91,7 +91,7 @@ include RoomsHelper
     else
       # If the room was not created successfully, render the form again with errors
       flash.now[:alert] = 'There was an error creating the room.'
-      render :new, status: :unprocessable_entity
+      render 'index', status: :unprocessable_entity
     end
   end
 
