@@ -135,3 +135,15 @@
     filter: hue-rotate(180deg);
     transition: filter 0.3s ease;
   }
+
+  #users-container {
+    max-height: 200px; 
+    overflow-y: auto;
+    overflow-x: hidden; 
+  }
+
+  #rooms-container {
+    max-height: 230px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+  }

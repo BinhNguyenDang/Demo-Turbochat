@@ -20,15 +20,19 @@
     </li>
     <h4> Users </h4>
     <%= turbo_stream_from "users" %>
-    <div id="users" data-controller="user-list">
-      <%= render "users/users", users: @users %>
+    <div id="users-container">
+      <div id="users" data-controller="user-list">
+        <%= render "users/users", users: @users %>
+      </div>
     </div>
     <h4> Rooms </h4>
     <%= turbo_stream_from "rooms" %>
     <%= render 'layouts/new_room_form' %>
     <%= render 'rooms/search_form' %>
-    <div id="rooms" data-controller="room-list">
-      <%= render "rooms/rooms", rooms: @joined_rooms, user: current_user%>
+    <div id="rooms-container">
+      <div id="rooms" data-controller="room-list">
+        <%= render "rooms/rooms", rooms: @joined_rooms, user: current_user%>
+      </div>
     </div>
   </div>
   <div id="room_container" class="col-md-9 col-sm-9 bg-dark text-light">
