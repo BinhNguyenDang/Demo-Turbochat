@@ -40,7 +40,7 @@
 #single_room {
   animation: slideInRight 0.5s;
   height: calc(100vh - 150px);
-  background-color: #000000;
+  background-color: rgb(16, 16, 17);
 }
 #messages {
   height: calc(100vh - 150px);
@@ -58,7 +58,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   padding-left: 2em;
-  background-color: #000000;
+  background-color: rgb(33, 37, 41);
   
 }
 #chatroom_container {

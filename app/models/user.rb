@@ -82,8 +82,6 @@ class User < ApplicationRecord
       'bg-dark'
     when 'dnd'
       'bg-danger'
-    else
-      'bg-dark'
     end
   end
 
