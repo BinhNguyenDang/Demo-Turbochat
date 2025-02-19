@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'video_chat/index'
+  get 'video_chat/group'
   get 'admin/dashboard'
   # Define resources for rooms and nested resources for messages
   resources :rooms do 
