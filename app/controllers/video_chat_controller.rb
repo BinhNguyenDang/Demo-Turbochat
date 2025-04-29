@@ -4,4 +4,9 @@ class VideoChatController < ApplicationController
     @room = Room.find(params[:id])
     @user = current_user
   end
+
+  def group
+    @room = Room.find(params[:id])
+    @user = current_user
+  end
 end
